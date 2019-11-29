@@ -1,14 +1,34 @@
-<h1>Hello, world!</h1>
-<p>Welcome to your new single-page application, built with:</p>
-<ul>
-  <li><a href='https://get.asp.net/'>ASP.NET Core</a> and <a href='https://msdn.microsoft.com/en-us/library/67ef8sbd.aspx'>C#</a> for cross-platform server-side code</li>
-  <li><a href='https://angular.io/'>Angular</a> and <a href='http://www.typescriptlang.org/'>TypeScript</a> for client-side code</li>
-  <li><a href='http://getbootstrap.com/'>Bootstrap</a> for layout and styling</li>
-</ul>
-<p>To help you get started, we've also set up:</p>
-<ul>
-  <li><strong>Client-side navigation</strong>. For example, click <em>Counter</em> then <em>Back</em> to return here.</li>
-  <li><strong>Angular CLI integration</strong>. In development mode, there's no need to run <code>ng serve</code>. It runs in the background automatically, so your client-side resources are dynamically built on demand and the page refreshes when you modify any file.</li>
-  <li><strong>Efficient production builds</strong>. In production mode, development-time features are disabled, and your <code>dotnet publish</code> configuration automatically invokes <code>ng build</code> to produce minified, ahead-of-time compiled JavaScript files.</li>
-</ul>
-<p>The <code>ClientApp</code> subdirectory is a standard Angular CLI application. If you open a command prompt in that directory, you can run any <code>ng</code> command (e.g., <code>ng test</code>), or use <code>npm</code> to install extra packages into it.</p>
+<div class="vocabularyContainer">
+  <div style="position: relative; top: 30%; text-align: center;">
+    <div>
+      <ruby style="font-size: xx-large;">
+        <rb>{{demo.head[0]}}</rb>
+        <rt>{{demo.head[1]}}</rt>
+        <rb>{{demo.tail}}</rb>
+      </ruby>
+    </div>
+    <div>
+      <span>
+        {{demo.zh_tw}}
+      </span>
+    </div>
+    <div style="margin: 50px auto;">
+      <table style="width: 100%;">
+        <tr>
+          <td>現在式</td>
+          <td>{{demo.now.y}}</td>
+          <td>{{demo.now.n}}</td>
+        </tr>
+        <tr>
+          <td>現在式 (敬語)</td>
+          <td>{{demo.now.ry}}</td>
+          <td>{{demo.now.rn}}</td>
+        </tr>
+        <tr>
+          <td>て型</td>
+          <td>{{demo.te}}</td>
+        </tr>
+      </table>
+    </div>
+  </div>
+</div>
