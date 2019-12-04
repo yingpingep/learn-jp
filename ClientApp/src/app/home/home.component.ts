@@ -42,12 +42,17 @@ const NDATA = [
 export class HomeComponent {
   datas: NiHon[] = NDATA;
   demo = this.datas[0];
-
+  chch = false;
   url = 'https://images.unsplash.com/photo-1470859624578-4bb57890378a?ixlib=rb-1.2.1&auto=format&fit=crop&w=1500&q=80';
 
   onSwipe(evt: any) {
     const pickOne = Math.round(Math.random() * 10) % this.datas.length;
     console.log(pickOne);
     this.demo = this.datas[pickOne];
+    this.chch = true;
+  }
+
+  OK() {
+    this.chch = false;
   }
 }

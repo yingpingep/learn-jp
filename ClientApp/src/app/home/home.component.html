@@ -1,4 +1,4 @@
-<div class="vocabularyContainer" (swipe)="onSwipe($event)">
+<div class="vocabularyContainer" (swipe)="onSwipe($event)" [ngClass]="{'fadeOut': chch, 'animated': chch}" (animationend)="OK()">
   <div style="position: relative; top: 20%; text-align: center;">
     <div>
       <ruby style="font-size: xx-large;">
