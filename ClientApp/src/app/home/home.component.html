@@ -1,5 +1,5 @@
-<div class="vocabularyContainer">
-  <div style="position: relative; top: 30%; text-align: center;">
+<div class="vocabularyContainer" (swipe)="onSwipe($event)">
+  <div style="position: relative; top: 20%; text-align: center;">
     <div>
       <ruby style="font-size: xx-large;">
         <rb>{{demo.head[0]}}</rb>
@@ -9,7 +9,7 @@
     </div>
     <div>
       <span>
-        {{demo.zh_tw}}
+        {{demo.type}} {{demo.zh_tw}}
       </span>
     </div>
     <div style="margin: 50px auto;">

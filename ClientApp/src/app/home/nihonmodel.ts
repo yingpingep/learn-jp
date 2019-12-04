@@ -1,6 +1,7 @@
 export interface NiHon {
   head: string[];
   tail: string;
+  complete: string;
   now: {
     y: string,
     n: string,
@@ -9,4 +10,5 @@ export interface NiHon {
   };
   te: string;
   zh_tw: string;
+  type: string;
 }
