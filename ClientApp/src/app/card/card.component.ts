@@ -1,6 +1,9 @@
-import { Component, OnInit, Input } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  Input
+} from '@angular/core';
 import { NiHon } from '../shared/nihonmodel';
-import { NotifyService } from '../shared/notify.service';
 
 @Component({
   selector: 'app-card',
@@ -12,7 +15,7 @@ export class CardComponent implements OnInit {
   @Input() demo: NiHon;
   @Input() i: number;
 
-  constructor(private notifyService: NotifyService) {
+  constructor() {
   }
 
   ngOnInit() {

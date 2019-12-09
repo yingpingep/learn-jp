@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using learn_jp.Models;
 using System.Text.Json;
+using System.IO;
 
 namespace learn_jp.Controllers
 {
@@ -16,8 +17,13 @@ namespace learn_jp.Controllers
         [HttpGet]
         public IEnumerable<NiHon> Get()
         {
-            string jStr = @"[{""head"":[""見"",""み""],""tail"":""る"",""complete"":""見る"",""now"":{""y"":""見る"",""n"":""見ない"",""ry"":""見ます"",""rn"":""見ません""},""te"":""見て"",""zh_tw"":""看見"",""type"":""II""},{""head"":[""行"",""い""],""tail"":""く"",""complete"":""行く"",""now"":{""y"":""行く"",""n"":""行かない"",""ry"":""行きます"",""rn"":""行きません""},""te"":""行って"",""zh_tw"":""走"",""type"":""I""}]";
-            return JsonSerializer.Deserialize<NiHon[]>(jStr).ToArray();
+            string jStr = "";
+            using (var ss = new StreamReader("gogo.json"))
+            {
+                jStr = ss.ReadToEnd();
+            }
+
+            return JsonSerializer.Deserialize<NiHon[]>(jStr);
         }
     }
 }

@@ -5,32 +5,14 @@ import { NiHon } from './nihonmodel';
 
 const NDATA = [
   {
-    head: ['見', 'み'],
-    tail: 'る',
-    complete: '見る',
-    now: {
-      y: '見る',
-      n: '見ない',
-      ry: '見ます',
-      rn: '見ません'
-    },
-    te: '見て',
-    zh_tw: '看見',
-    type: 'II'
+    kanji: '見る',
+    kana: 'みる',
+    zh_tw: '看見'
   },
   {
-    head: ['行', 'い'],
-    tail: 'く',
-    complete: '行く',
-    now: {
-      y: '行く',
-      n: '行かない',
-      ry: '行きます',
-      rn: '行きません'
-    },
-    te: '行って',
+    kanji: '行く',
+    kana: 'いく',
     zh_tw: '走',
-    type: 'I'
   },
 ];
 
@@ -38,9 +20,18 @@ const NDATA = [
   providedIn: 'root'
 })
 export class NotifyService {
-  constructor(private httpClient: HttpClient, @Inject('BASE_URL') private baseUrl: string) { }
+  moveEndNotification = new Subject<string>();
+
+  constructor(
+    private httpClient: HttpClient,
+    @Inject('BASE_URL') private baseUrl: string
+  ) { }
 
   getWords(): Observable<NiHon[]> {
     return this.httpClient.get<NiHon[]>(this.baseUrl + 'nihon');
+  }
+
+  getWordsFix(): NiHon[] {
+    return NDATA;
   }
 }

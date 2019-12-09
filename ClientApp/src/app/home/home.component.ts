@@ -20,17 +20,12 @@ export class HomeComponent implements OnInit {
         this.datas = result;
       }
     );
-  }
+    // this.datas = this.notifyService.getWordsFix();
 
-  onSwipe(evt: PointerEvent, key: string) {
-    const vocabDiv = document.getElementById(key) as HTMLDivElement;
-    vocabDiv.classList.add(...['animated', 'fadeOut']);
-  }
-
-  OK(evt: AnimationEvent) {
-    const vocabDiv = evt.currentTarget as HTMLDivElement;
-    vocabDiv.classList.remove(...['animated', 'fadeOut']);
-    const hooh = this.datas.pop();
-    this.datas = [hooh, this.datas[0]];
+    this.notifyService.moveEndNotification.subscribe(
+      result => {
+        const temp = this.datas.shift();
+        this.datas.push(temp);
+      });
   }
 }

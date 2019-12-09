@@ -1,32 +1,11 @@
-<div style="position: relative; text-align: center;">
-  <div style="margin-top: 45%">
-    <ruby style="font-size: xx-large;">
-      <rb>{{demo.head[0]}}</rb>
-      <rt>{{demo.head[1]}}</rt>
-      <rb>{{demo.tail}}</rb>
-    </ruby>
+<ng-container>
+  <div>
+    {{demo.kanji}}
   </div>
   <div>
-    <span>
-      {{demo.type}} {{demo.zh_tw}}
-    </span>
+    {{demo.kana}}
   </div>
-  <div style="margin: 50px auto;">
-    <table style="width: 100%;">
-      <tr>
-        <td>現在式</td>
-        <td>{{demo.now.y}}</td>
-        <td>{{demo.now.n}}</td>
-      </tr>
-      <tr>
-        <td>現在式 (敬語)</td>
-        <td>{{demo.now.ry}}</td>
-        <td>{{demo.now.rn}}</td>
-      </tr>
-      <tr>
-        <td>て型</td>
-        <td>{{demo.te}}</td>
-      </tr>
-    </table>
+  <div>
+    {{demo.zh_tw}}
   </div>
-</div>
+</ng-container>

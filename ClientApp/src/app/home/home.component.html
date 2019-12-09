@@ -1,6 +1,6 @@
-<ng-container *ngFor="let item of datas; let i = index">
-  <div id="{{'co' + i}}" class="vocabularyContainer" (swipe)="onSwipe($event, 'co' + i)" (animationend)="OK($event)" style="background-color: white;" [ngStyle]="{'z-index': 10-i}">
-    <app-card [demo]="item">
+<div class="container">
+  <ng-container *ngFor="let item of datas; let i = index">
+    <app-card [demo]="item" class="card" appDraggable>
     </app-card>
-  </div>
-</ng-container>
+  </ng-container>
+</div>

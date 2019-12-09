@@ -6,11 +6,14 @@ import {
   MatSidenavModule,
   MatTableModule
 } from '@angular/material';
+import { DraggableDirective } from './draggable.directive';
 
 
 
 @NgModule({
-  declarations: [],
+  declarations: [
+    DraggableDirective
+  ],
   imports: [
     CommonModule
   ],
@@ -18,7 +21,8 @@ import {
     MatButtonModule,
     MatIconModule,
     MatSidenavModule,
-    MatTableModule
+    MatTableModule,
+    DraggableDirective
   ]
 })
 export class SharedModule { }
