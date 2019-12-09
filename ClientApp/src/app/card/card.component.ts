@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { NiHon } from './nihonmodel';
+import { NiHon } from '../shared/nihonmodel';
 import { NotifyService } from '../shared/notify.service';
 
 @Component({

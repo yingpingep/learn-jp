@@ -1,37 +1,6 @@
-import { Component, AfterContentInit } from '@angular/core';
-import { NiHon } from '../card/nihonmodel';
+import { Component, AfterContentInit, OnInit } from '@angular/core';
+import { NiHon } from '../shared/nihonmodel';
 import { NotifyService } from '../shared/notify.service';
-
-const NDATA = [
-  {
-    head: ['見', 'み'],
-    tail: 'る',
-    complete: '見る',
-    now: {
-      y: '見る',
-      n: '見ない',
-      ry: '見ます',
-      rn: '見ません'
-    },
-    te: '見て',
-    zh_tw: '看見',
-    type: 'II'
-  },
-  {
-    head: ['行', 'い'],
-    tail: 'く',
-    complete: '行く',
-    now: {
-      y: '行く',
-      n: '行かない',
-      ry: '行きます',
-      rn: '行きません'
-    },
-    te: '行って',
-    zh_tw: '走',
-    type: 'I'
-  },
-];
 
 @Component({
   selector: 'app-home',
@@ -39,9 +8,18 @@ const NDATA = [
   styleUrls: ['./home.component.scss']
 })
 
-export class HomeComponent {
-  datas: NiHon[] = NDATA;
+export class HomeComponent implements OnInit {
+  datas: NiHon[];
+
   constructor(private notifyService: NotifyService) {
+  }
+
+  ngOnInit() {
+    this.notifyService.getWords().subscribe(
+      result => {
+        this.datas = result;
+      }
+    );
   }
 
   onSwipe(evt: PointerEvent, key: string) {
