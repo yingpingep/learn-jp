@@ -1,6 +1,6 @@
-import { Component } from '@angular/core';
-import { VirtualTimeScheduler } from 'rxjs';
-import { NiHon } from './nihonmodel';
+import { Component, AfterContentInit } from '@angular/core';
+import { NiHon } from '../card/nihonmodel';
+import { NotifyService } from '../shared/notify.service';
 
 const NDATA = [
   {
@@ -41,31 +41,18 @@ const NDATA = [
 
 export class HomeComponent {
   datas: NiHon[] = NDATA;
-  demo = this.datas[0];
-  demo1 = this.datas[1];
-  chch = false;
-  chch1 = false;
-  url = 'https://images.unsplash.com/photo-1470859624578-4bb57890378a?ixlib=rb-1.2.1&auto=format&fit=crop&w=1500&q=80';
-  ho = 1000;
-  ho1 = 1;
-
-  onSwipe(evt: any, key: string) {
-    if (key === '1') {
-      this.chch = true;
-    } else {
-      this.chch1 = true;
-    }
+  constructor(private notifyService: NotifyService) {
   }
 
-  OK(key: string) {
-    if (key === '1') {
-      this.ho = 0;
-      this.ho1 = 1000;
-      this.chch = false;
-    } else {
-      this.ho1 = 0;
-      this.ho = 1000;
-      this.chch1 = false;
-    }
+  onSwipe(evt: PointerEvent, key: string) {
+    const vocabDiv = document.getElementById(key) as HTMLDivElement;
+    vocabDiv.classList.add(...['animated', 'fadeOut']);
+  }
+
+  OK(evt: AnimationEvent) {
+    const vocabDiv = evt.currentTarget as HTMLDivElement;
+    vocabDiv.classList.remove(...['animated', 'fadeOut']);
+    const hooh = this.datas.pop();
+    this.datas = [hooh, this.datas[0]];
   }
 }
