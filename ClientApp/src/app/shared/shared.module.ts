@@ -7,8 +7,7 @@ import {
   MatTableModule
 } from '@angular/material';
 import { DraggableDirective } from './draggable.directive';
-
-
+import { nsProvider } from './notify.service';
 
 @NgModule({
   declarations: [
@@ -23,6 +22,9 @@ import { DraggableDirective } from './draggable.directive';
     MatSidenavModule,
     MatTableModule,
     DraggableDirective
+  ],
+  providers: [
+    nsProvider
   ]
 })
 export class SharedModule { }

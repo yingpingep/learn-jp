@@ -4,6 +4,7 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
+    "dev": "ng serve --prod",
     "build": "ng build",
     "build:ssr": "ng run learn_jp:server:dev",
     "test": "ng test",

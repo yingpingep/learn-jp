@@ -13,7 +13,6 @@ import { NiHon } from '../shared/nihonmodel';
 export class CardComponent implements OnInit {
 
   @Input() demo: NiHon;
-  @Input() i: number;
 
   constructor() {
   }

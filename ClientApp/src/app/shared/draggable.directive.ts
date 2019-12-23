@@ -6,7 +6,7 @@ import {
   HostListener
 } from '@angular/core';
 
-import { NotifyService } from './notify.service';
+import { NotifyService, NotifyServiceFix } from './notify.service';
 
 @Directive({
   selector: '[appDraggable]'
@@ -20,32 +20,38 @@ export class DraggableDirective implements AfterViewInit {
 
   @HostListener('pan', ['$event']) onPan = this.followDrag;
   @HostListener('panend', ['$event']) onPanend = this.backToOriginPosition;
+  @HostListener('window:resize', ['$event']) onResize = this.resetOriginPosition;
 
   constructor(
     private host: ElementRef,
     private notifyService: NotifyService
-  ) {}
+  ) { }
 
   ngAfterViewInit(): void {
-    this.originLeft = this.host.nativeElement.offsetLeft;
-    this.originTop = this.host.nativeElement.offsetTop;
+    this.resetOriginPosition();
   }
 
-  followDrag(event: any) {
+  followDrag(event: any): void {
     const tempLeft = this.originLeft + event.deltaX;
     const tempTop = this.originTop + event.deltaY;
     this.hostLeft = tempLeft + 'px';
     this.hostTop = tempTop + 'px';
   }
 
-  backToOriginPosition(event: any) {
+  backToOriginPosition(event: any): void {
     this.hostLeft = this.originLeft + 'px';
     this.hostTop = this.originTop + 'px';
 
-    const sqrt = Math.sqrt;
-    const pow = Math.pow;
-    if (sqrt(pow(event.deltaX, 2) + pow(event.deltaY, 2)) > 150) {
-      this.notifyService.moveEndNotification.next('drop');
+    const hypoteinousa = Math.sqrt(Math.pow(event.deltaX, 2) + Math.pow(event.deltaY, 2));
+    if (hypoteinousa > 150) {
+      this.notifyService.shiftNotification.next('drop');
     }
+  }
+
+  resetOriginPosition(): void {
+    this.originLeft = this.host.nativeElement.offsetLeft;
+    this.originTop = this.host.nativeElement.offsetTop;
+    this.hostLeft = undefined;
+    this.hostTop = undefined;
   }
 }

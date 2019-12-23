@@ -1,13 +1,14 @@
 import { Component, AfterContentInit, OnInit } from '@angular/core';
 import { NiHon } from '../shared/nihonmodel';
-import { NotifyService } from '../shared/notify.service';
+import { NotifyService, NotifyServiceFix } from '../shared/notify.service';
+
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
-  styleUrls: ['./home.component.scss']
-})
+  styleUrls: ['./home.component.scss'],
 
+})
 export class HomeComponent implements OnInit {
   datas: NiHon[];
 
@@ -20,9 +21,8 @@ export class HomeComponent implements OnInit {
         this.datas = result;
       }
     );
-    // this.datas = this.notifyService.getWordsFix();
 
-    this.notifyService.moveEndNotification.subscribe(
+    this.notifyService.shiftNotification.subscribe(
       result => {
         const temp = this.datas.shift();
         this.datas.push(temp);

@@ -2,6 +2,8 @@ import { Injectable, Inject } from '@angular/core';
 import { Subject, Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { NiHon } from './nihonmodel';
+import { INotifyService } from './interfaces/notify.interface';
+import { environment } from 'src/environments/environment';
 
 const NDATA = [
   {
@@ -16,11 +18,9 @@ const NDATA = [
   },
 ];
 
-@Injectable({
-  providedIn: 'root'
-})
-export class NotifyService {
-  moveEndNotification = new Subject<string>();
+@Injectable()
+export class NotifyService implements INotifyService {
+  shiftNotification = new Subject<string>();
 
   constructor(
     private httpClient: HttpClient,
@@ -30,8 +30,31 @@ export class NotifyService {
   getWords(): Observable<NiHon[]> {
     return this.httpClient.get<NiHon[]>(this.baseUrl + 'nihon');
   }
+}
 
-  getWordsFix(): NiHon[] {
-    return NDATA;
+@Injectable()
+export class NotifyServiceFix implements INotifyService {
+  shiftNotification = new Subject<string>();
+
+  constructor() { }
+
+  getWords(): Observable<NiHon[]> {
+    return new Observable(subscriber => {
+      subscriber.next(NDATA);
+    });
   }
 }
+
+const nsFactory: any = (http: HttpClient, base_url: string) => {
+  if (environment.production) {
+    return new NotifyService(http, base_url);
+  } else {
+    return new NotifyServiceFix();
+  }
+};
+
+export const nsProvider = {
+  provide: NotifyService,
+  useFactory: nsFactory,
+  deps: [ HttpClient, 'BASE_URL' ]
+};

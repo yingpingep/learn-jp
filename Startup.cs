@@ -67,7 +67,7 @@ namespace learn_jp
 
                 if (env.IsDevelopment())
                 {
-                    spa.UseAngularCliServer(npmScript: "start");
+                    spa.UseAngularCliServer(npmScript: "dev");
                 }
             });
         }
