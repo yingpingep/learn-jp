@@ -8,6 +8,7 @@ import {
 } from '@angular/material';
 import { DraggableDirective } from './draggable.directive';
 import { nsProvider } from './notify.service';
+import { DragDropModule } from '@angular/cdk/drag-drop';
 
 @NgModule({
   declarations: [
@@ -21,6 +22,7 @@ import { nsProvider } from './notify.service';
     MatIconModule,
     MatSidenavModule,
     MatTableModule,
+    DragDropModule,
     DraggableDirective
   ],
   providers: [
