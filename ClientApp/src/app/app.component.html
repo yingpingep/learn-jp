@@ -1,3 +1,15 @@
 <body>
+  <mat-toolbar class="header">
+    <span>FirstRow</span>
+    <div style="flex: 1 1 auto;"></div>
+
+    <button mat-icon-button routerLink="/starlist" routerLinkActive #tA="routerLinkActive" routerLinkActive="star">
+      <mat-icon>playlist_add_check</mat-icon>
+    </button>
+
+    <button mat-icon-button (click)="rs()" *ngIf="tA.isActive">
+      <mat-icon>close</mat-icon>
+    </button>
+  </mat-toolbar>
   <router-outlet></router-outlet>
 </body>

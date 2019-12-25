@@ -1,8 +1,25 @@
-<div class="container">
-  <ng-container *ngFor="let item of datas; let i = index">
-    <app-card [demo]="item" class="card"
-      cdkDrag
-      (cdkDragEnded)="onDragEnd($event)">
-    </app-card>
-  </ng-container>
+<div class="container"
+  cdkDropList
+  #originList="cdkDropList"
+  [cdkDropListData]="datas"
+  [cdkDropListConnectedTo]="[remoList]"
+  (cdkDropListDropped)="rs($event)">
+  <app-card *ngFor="let item of datas; let i = index"
+    cdkDrag
+    class="card"
+    [demo]="item"
+    (cdkDragMoved)="oh($event)"
+    (cdkDragEnded)="oho($event)">
+  </app-card>
+</div>
+
+<div class="collectionContainer"
+  cdkDropList
+  #remoList="cdkDropList"
+  [cdkDropListData]="remo"
+  [cdkDropListConnectedTo]="[originList]"
+  (cdkDropListDropped)="rs($event)">
+  <div [ngClass]="{'coco': ok}">
+    <mat-icon style="font-size: 50px;" color="accent">playlist_add</mat-icon>
+  </div>
 </div>

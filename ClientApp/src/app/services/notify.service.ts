@@ -1,8 +1,8 @@
 import { Injectable, Inject } from '@angular/core';
 import { Subject, Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
-import { NiHon } from './nihonmodel';
-import { INotifyService } from './interfaces/notify.interface';
+import { NiHon } from '../shared/nihonmodel';
+import { INotifyService } from '../shared/interfaces/notify.interface';
 import { environment } from 'src/environments/environment';
 
 const NDATA = [

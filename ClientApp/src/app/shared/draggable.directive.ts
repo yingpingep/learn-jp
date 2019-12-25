@@ -6,7 +6,7 @@ import {
   HostListener
 } from '@angular/core';
 
-import { NotifyService, NotifyServiceFix } from './notify.service';
+import { NotifyService, NotifyServiceFix } from '../services/notify.service';
 
 @Directive({
   selector: '[appDraggable]'
