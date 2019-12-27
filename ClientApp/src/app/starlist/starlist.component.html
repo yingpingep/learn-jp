@@ -1,5 +1,15 @@
-<div style="padding-top: 56px;">
-  <p *ngFor="let item of datas">
-    {{item.kanji}}
-  </p>
+<div class="starcontainer">
+  <mat-card *ngFor="let item of datas" class="starcard">
+    <mat-card-content>
+      <div>
+        {{item.kanji}}
+      </div>
+      <div>
+        {{item.kana}}
+      </div>
+      <div>
+        {{item.zh_tw}}
+      </div>
+    </mat-card-content>
+  </mat-card>
 </div>

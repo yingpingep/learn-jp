@@ -5,13 +5,16 @@ import {
   MatIconModule,
   MatSidenavModule,
   MatTableModule,
-  MatToolbarModule
+  MatToolbarModule,
+  MatCardModule
 } from '@angular/material';
 import { nsProvider } from '../services/notify.service';
 import { DragDropModule } from '@angular/cdk/drag-drop';
+import { DraggableDirective } from './draggable.directive';
 
 @NgModule({
   declarations: [
+    DraggableDirective
   ],
   imports: [
     CommonModule
@@ -22,7 +25,8 @@ import { DragDropModule } from '@angular/cdk/drag-drop';
     MatSidenavModule,
     MatTableModule,
     DragDropModule,
-    MatToolbarModule
+    MatToolbarModule,
+    MatCardModule
   ],
   providers: [
     nsProvider

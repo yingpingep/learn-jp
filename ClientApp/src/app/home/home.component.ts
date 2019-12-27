@@ -3,6 +3,7 @@ import { NiHon } from '../shared/nihonmodel';
 import { NotifyService, NotifyServiceFix } from '../services/notify.service';
 import { CdkDragEnd, CdkDragDrop, moveItemInArray, transferArrayItem, CdkDragEnter } from '@angular/cdk/drag-drop';
 import { StarService } from '../services/star.service';
+import { Router, RouterEvent } from '@angular/router';
 
 
 @Component({
@@ -18,38 +19,52 @@ export class HomeComponent implements OnInit {
 
   constructor(
     private notifyService: NotifyService,
-    private starService: StarService) {
+    private starService: StarService,
+    private router: Router) {
+
   }
 
   ngOnInit() {
     this.notifyService.getWords().subscribe(
-      result => {
+      (result) => {
         this.datas = result;
+        const si = this.notifyService.getIndex();
+        if (si) {
+          const temp = this.datas.filter(item => item.id >= si);
+
+          this.datas = temp.concat(...this.datas.filter(item => item.id < si));
+        }
       }
     );
 
     this.remo = [];
   }
 
-  rs(event: CdkDragDrop<NiHon[]>): any {
+  onDrag(event: CdkDragDrop<NiHon[]>): any {
     if (event.previousContainer === event.container) {
       const distance = Math.sqrt(Math.pow(event.distance.x, 2) + Math.pow(event.distance.y, 2));
+
       if (distance > 150) {
-        const temp = this.datas.shift();
-        this.datas.push(temp);
+        this._moveNihon();
       }
     } else {
-      const temp = this.datas.shift();
-      this.datas.push(temp);
+      const temp = this._moveNihon();
       this.starService.addToStar(temp);
     }
   }
 
-  oh(event: CdkDragEnter<NiHon[]>): any {
+  private _moveNihon(): NiHon {
+    const temp = this.datas.shift();
+    this.datas.push(temp);
+    this.notifyService.saveIndex(temp.id + 1);
+    return temp;
+  }
+
+  onMove(event: CdkDragEnter<NiHon[]>): any {
     this.ok = true;
   }
 
-  oho(event: CdkDragEnter<NiHon[]>): any {
+  onMoveEnd(event: CdkDragEnter<NiHon[]>): any {
     this.ok = false;
   }
 }
