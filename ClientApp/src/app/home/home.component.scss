@@ -36,7 +36,7 @@
   opacity: 0;
 }
 
-.coco  {
+.collectionMiddle  {
   display: flex;
   visibility: visible;
   height: 100%;
@@ -54,4 +54,12 @@
   top: calc(80% + 56px);
   height: 10%;
   width: 100%;
+}
+
+.collectionIcon {
+  font-size: 50px;
+}
+
+.collectionIconScale {
+  transform: scale(1.5);
 }

@@ -1,5 +1,10 @@
-<div class="starcontainer">
-  <mat-card *ngFor="let item of datas" class="starcard">
+<div class="starcontainer"
+  cdkDropList
+  #originList="cdkDropList"
+  cdkDropListOrientation="horizontal">
+  <mat-card *ngFor="let item of datas" class="starcard"
+    cdkDrag
+    cdkDragLockAxis="x">
     <mat-card-content>
       <div>
         {{item.kanji}}

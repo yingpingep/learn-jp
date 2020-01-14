@@ -3,13 +3,12 @@
   #originList="cdkDropList"
   [cdkDropListData]="datas"
   [cdkDropListConnectedTo]="[remoList]"
-  (cdkDropListDropped)="onDrag($event)">
+  (cdkDropListDropped)="onDragOrDrop($event)">
   <app-card *ngFor="let item of datas; let i = index"
     cdkDrag
+    #dragItem="cdkDrag"
     class="card"
-    [demo]="item"
-    (cdkDragMoved)="onMove($event)"
-    (cdkDragEnded)="onMoveEnd($event)">
+    [demo]="item">
   </app-card>
 </div>
 
@@ -18,8 +17,8 @@
   #remoList="cdkDropList"
   [cdkDropListData]="remo"
   [cdkDropListConnectedTo]="[originList]"
-  (cdkDropListDropped)="onDrag($event)">
-  <div [ngClass]="{'coco': ok}">
-    <mat-icon style="font-size: 50px;">playlist_add</mat-icon>
+  (cdkDropListDropped)="onDragOrDrop($event)">
+  <div [ngClass]="{'collectionMiddle': isShowed}">
+    <mat-icon class="collectionIcon" [ngClass]="{'collectionIconScale': isScaled}">playlist_add</mat-icon>
   </div>
 </div>

@@ -23,7 +23,6 @@ const NDATA = [
 @Injectable()
 export class NotifyService implements INotifyService {
   shiftNotification = new Subject<string>();
-  ls = window.localStorage;
 
   constructor(
     private httpClient: HttpClient,
@@ -35,11 +34,11 @@ export class NotifyService implements INotifyService {
   }
 
   saveIndex(id: number): void {
-    this.ls.setItem('index', id.toString());
+    localStorage.setItem('index', id.toString());
   }
 
   getIndex(): number | undefined {
-    const si = this.ls.getItem('index');
+    const si = localStorage.getItem('index');
     if (si) {
       return parseInt(si, 10);
     }
@@ -49,7 +48,6 @@ export class NotifyService implements INotifyService {
 @Injectable()
 export class NotifyServiceFix implements INotifyService {
   shiftNotification = new Subject<string>();
-  ls = window.localStorage;
 
   constructor() { }
 
@@ -60,11 +58,11 @@ export class NotifyServiceFix implements INotifyService {
   }
 
   saveIndex(id: number): void {
-    this.ls.setItem('index', id.toString());
+    localStorage.setItem('index', id.toString());
   }
 
   getIndex(): number | undefined {
-    const si = this.ls.getItem('index');
+    const si = localStorage.getItem('index');
     if (si) {
       return parseInt(si, 10);
     }
