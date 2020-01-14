@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { NiHon } from '../shared/nihonmodel';
+import { Observable, of, Subject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -7,7 +8,13 @@ import { NiHon } from '../shared/nihonmodel';
 export class StarService {
 
   private star: NiHon[];
-  constructor() { }
+  private starSubject: Subject<NiHon[]>;
+  starObservable: Observable<NiHon[]>;
+
+  constructor() {
+    this.starSubject = new Subject<NiHon[]>();
+    this.starObservable = this.starSubject.asObservable();
+  }
 
   addToStar(item: NiHon): void {
     this.star = this.getStarList() ? this.getStarList() : [];
@@ -16,13 +23,28 @@ export class StarService {
     if (!temp) {
       this.star.push(item);
       localStorage.setItem('starList', JSON.stringify(this.star));
+
+      this.starSubject.next(this.star);
     }
   }
 
   getStarList(): NiHon[] | undefined {
     const starFromLocalStorage = localStorage.getItem('starList');
     if (starFromLocalStorage) {
-      return JSON.parse(localStorage.getItem('starList'));
+      this.star = JSON.parse(localStorage.getItem('starList'));
+      return this.star;
     }
+    return undefined;
+  }
+
+  removeFromStarList(item: NiHon): void {
+    this.star = this.star.filter((value) => {
+      if (value !== item) {
+        return value;
+      }
+    });
+
+    localStorage.setItem('starList', JSON.stringify(this.star));
+    this.starSubject.next(this.star);
   }
 }

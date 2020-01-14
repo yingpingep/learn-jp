@@ -1,7 +1,16 @@
-.starcontainer {
+.starContainer {
   padding-top: 64px;
 }
 
-.starcard {
+.starCard {
   margin: 15px;
+}
+
+.buttonGroup {
+  display: flex;
+  width: 100%;
+}
+
+.seprator {
+  flex: 1 1 auto;
 }

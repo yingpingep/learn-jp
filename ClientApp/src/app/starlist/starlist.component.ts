@@ -1,8 +1,9 @@
-import { Component, OnInit, ViewChildren } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { StarService } from '../services/star.service';
 import { NiHon } from '../shared/nihonmodel';
-import { CdkDragMove } from '@angular/cdk/drag-drop';
+import { CdkDragMove, CdkDrag } from '@angular/cdk/drag-drop';
 import { observable, fromEvent } from 'rxjs';
+import { reduce, filter } from 'rxjs/operators';
 
 @Component({
   selector: 'app-starlist',
@@ -16,5 +17,12 @@ export class StarlistComponent implements OnInit {
 
   ngOnInit() {
     this.datas = this.starService.getStarList();
+    this.starService.starObservable.subscribe((data) => {
+      this.datas = data.map(x => x);
+    });
+  }
+
+  remove(item: NiHon) {
+    this.starService.removeFromStarList(item);
   }
 }

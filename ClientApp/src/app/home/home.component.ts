@@ -10,6 +10,7 @@ import { NiHon } from '../shared/nihonmodel';
 import { NotifyService } from '../services/notify.service';
 import { CdkDragDrop, CdkDropList, CdkDrag } from '@angular/cdk/drag-drop';
 import { StarService } from '../services/star.service';
+import { take } from 'rxjs/operators';
 
 
 @Component({
@@ -31,18 +32,6 @@ export class HomeComponent implements OnInit, AfterViewInit {
     private starService: StarService) { }
 
   ngOnInit() {
-    this.remoList.sorted.subscribe(() => {
-      this.isScaled = true;
-    });
-
-    this.remoList.exited.subscribe(() => {
-      this.isScaled = false;
-    });
-
-    this.remoList.dropped.subscribe(() => {
-      this.isScaled = false;
-    });
-
     this.notifyService.getWords().subscribe(
       (result) => {
         this.datas = result;
@@ -59,14 +48,29 @@ export class HomeComponent implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit(): void {
-    this.dragItems.forEach((item) => {
-      item.moved.subscribe(() => {
-        this.isShowed = true;
+    this.dragItems.changes.pipe(take(1))
+      .subscribe(() => {
+        this.dragItems.forEach((item) => {
+          item.moved.subscribe(() => {
+            this.isShowed = true;
+          });
+
+          item.ended.subscribe(() => {
+            this.isShowed = false;
+          });
+        });
       });
 
-      item.ended.subscribe(() => {
-        this.isShowed = false;
-      });
+    this.remoList.sorted.subscribe(() => {
+      this.isScaled = true;
+    });
+
+    this.remoList.exited.subscribe(() => {
+      this.isScaled = false;
+    });
+
+    this.remoList.dropped.subscribe(() => {
+      this.isScaled = false;
     });
   }
 

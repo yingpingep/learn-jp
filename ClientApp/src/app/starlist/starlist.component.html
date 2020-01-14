@@ -1,10 +1,5 @@
-<div class="starcontainer"
-  cdkDropList
-  #originList="cdkDropList"
-  cdkDropListOrientation="horizontal">
-  <mat-card *ngFor="let item of datas" class="starcard"
-    cdkDrag
-    cdkDragLockAxis="x">
+<div class="starContainer">
+  <mat-card *ngFor="let item of datas" class="starCard">
     <mat-card-content>
       <div>
         {{item.kanji}}
@@ -16,5 +11,11 @@
         {{item.zh_tw}}
       </div>
     </mat-card-content>
+    <mat-card-actions>
+      <div class="buttonGroup">
+        <span class="seprator"></span>
+        <button mat-button (click)="remove(item)">REMOVE</button>
+      </div>
+    </mat-card-actions>
   </mat-card>
 </div>

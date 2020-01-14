@@ -67,7 +67,8 @@ namespace learn_jp
 
                 if (env.IsDevelopment())
                 {
-                    spa.UseAngularCliServer(npmScript: "dev");
+                    // spa.UseAngularCliServer(npmScript: "dev");
+                    spa.UseProxyToSpaDevelopmentServer("http://localhost:4200");
                 }
             });
         }
