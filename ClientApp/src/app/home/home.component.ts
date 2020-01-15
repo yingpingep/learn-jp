@@ -25,7 +25,6 @@ export class HomeComponent implements OnInit, AfterViewInit {
   isShowed = false;
   isScaled = false;
   @ViewChild('remoList', { static: true }) remoList: CdkDropList;
-  @ViewChildren('dragItem') dragItems: QueryList<CdkDrag>;
 
   constructor(
     private notifyService: NotifyService,
@@ -48,19 +47,6 @@ export class HomeComponent implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit(): void {
-    this.dragItems.changes.pipe(take(1))
-      .subscribe(() => {
-        this.dragItems.forEach((item) => {
-          item.moved.subscribe(() => {
-            this.isShowed = true;
-          });
-
-          item.ended.subscribe(() => {
-            this.isShowed = false;
-          });
-        });
-      });
-
     this.remoList.sorted.subscribe(() => {
       this.isScaled = true;
     });
@@ -93,5 +79,13 @@ export class HomeComponent implements OnInit, AfterViewInit {
     this.datas.push(temp);
     this.notifyService.saveIndex(temp.id + 1);
     return temp;
+  }
+
+  onMoved() {
+    this.isShowed = true;
+  }
+
+  onMoveEnded() {
+    this.isShowed = false;
   }
 }

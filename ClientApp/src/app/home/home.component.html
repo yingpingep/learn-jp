@@ -8,7 +8,9 @@
     cdkDrag
     #dragItem="cdkDrag"
     class="card"
-    [demo]="item">
+    [demo]="item"
+    (cdkDragMoved)="onMoved()"
+    (cdkDragEnded)="onMoveEnded()">
   </app-card>
 </div>
 
