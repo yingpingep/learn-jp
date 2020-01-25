@@ -1,1 +1,5 @@
 @import "~@angular/material/prebuilt-themes/indigo-pink.css";
+
+.rootContainer {
+  padding-top: 64px;
+}

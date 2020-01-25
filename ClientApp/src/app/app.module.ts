@@ -12,6 +12,7 @@ import { FetchDataComponent } from './fetch-data/fetch-data.component';
 import { SharedModule } from './shared/shared.module';
 import { CardComponent } from './card/card.component';
 import { StarlistComponent } from './starlist/starlist.component';
+import { SettingComponent } from './setting/setting.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { StarlistComponent } from './starlist/starlist.component';
     CounterComponent,
     FetchDataComponent,
     CardComponent,
-    StarlistComponent
+    StarlistComponent,
+    SettingComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -29,7 +31,8 @@ import { StarlistComponent } from './starlist/starlist.component';
     FormsModule,
     RouterModule.forRoot([
       { path: '', component: HomeComponent, pathMatch: 'full' },
-      { path: 'starlist', component: StarlistComponent }
+      { path: 'starlist', component: StarlistComponent },
+      { path: 'setting', component: SettingComponent}
     ]),
     SharedModule
   ],
