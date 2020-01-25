@@ -36,6 +36,16 @@
   opacity: 0;
 }
 
+.collectionContainer {
+  visibility: hidden;
+  position: absolute;
+  display: block;
+  bottom: 56px;
+  height: 7%;
+  max-height: 7%;
+  width: 100%;
+}
+
 .collectionMiddle  {
   display: flex;
   visibility: visible;
@@ -45,15 +55,6 @@
   align-items: center;
   justify-content: center;
   z-index: 1001;
-}
-
-.collectionContainer {
-  visibility: hidden;
-  position: absolute;
-  display: block;
-  top: calc(80% + 56px);
-  height: 10%;
-  width: 100%;
 }
 
 .collectionIcon {
