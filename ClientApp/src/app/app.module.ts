@@ -12,6 +12,7 @@ import { FetchDataComponent } from './fetch-data/fetch-data.component';
 import { SharedModule } from './shared/shared.module';
 import { CardComponent } from './card/card.component';
 import { StarlistComponent } from './starlist/starlist.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -31,7 +32,8 @@ import { StarlistComponent } from './starlist/starlist.component';
       { path: '', component: HomeComponent, pathMatch: 'full' },
       { path: 'starlist', component: StarlistComponent }
     ]),
-    SharedModule
+    SharedModule,
+    BrowserAnimationsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
