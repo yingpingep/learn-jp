@@ -1,24 +1,19 @@
-.cus-container {
+.container {
   padding-top: 64px;
-  display: block;
   visibility: hidden;
-  width: 100%;
-  height: calc(100vh - 56px);
   font-size: large;
+  height: calc(100vh - 56px);
+  overflow: hidden;
 }
 
 .card {
-  display: flex;
-  position: absolute;
-  align-items: center;
-  justify-content: center;
-  left: 15%;
-  top: calc(5% + 56px);
-  width: 70%;
-  height: calc(80% - 56px);
+  font-size: large;
   border: 1px solid;
   border-radius: 20px;
   background-color: white;
+  position: absolute;
+  height: 100%;
+  width: 100%;
 
   &:nth-child(1) {
     visibility: visible;
@@ -62,5 +57,5 @@
 }
 
 .collectionIconScale {
-  transform: scale(1.5);
+  transform: scale(1.2);
 }

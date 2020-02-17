@@ -4,15 +4,20 @@
   [cdkDropListData]="datas"
   [cdkDropListConnectedTo]="[remoList]"
   (cdkDropListDropped)="onDragOrDrop($event)">
-  <app-card *ngFor="let item of datas; let i = index"
-    cdkDrag
-    #dragItem="cdkDrag"
-    class="card"
-    [demo]="item">
-  </app-card>
-</div>
+  <div class="row mt-5 h-75 mh-75">
+    <div class="col-2"></div>
+    <div class="row col-8 flex-column">
+      <app-card *ngFor="let item of datas; let i = index"
+      cdkDrag
+      #dragItem="cdkDrag"
+      class="card justify-content-center align-items-center"
+      [demo]="item">
+    </app-card>
+    </div>
+    <div class="col-2"></div>
+  </div>
 
-<div class="collectionContainer"
+  <div class="row h-auto mh-100"
   cdkDropList
   #remoList="cdkDropList"
   [cdkDropListData]="remo"
@@ -21,4 +26,5 @@
   <div [ngClass]="{'collectionMiddle': isShowed}">
     <mat-icon class="collectionIcon" [ngClass]="{'collectionIconScale': isScaled}">playlist_add</mat-icon>
   </div>
+</div>
 </div>
